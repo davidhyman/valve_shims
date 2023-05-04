@@ -211,6 +211,7 @@ def run(valves):
         "buy shim",
         "buy gap",
         "buy err %",
+        "action",
     ]
     content = []
     for a, b in sorted(best_pairs, key=lambda x: x[0].number):
@@ -234,6 +235,7 @@ def run(valves):
         c.shim_measured,
         c.gap,
         int(round(error_percentage(a, c))),
+        f"swap #{b.number}" if abs(int(round(error_percentage(a, b)))) < threshold else f"buy {c.shim_measured:.2f}"
         ])
     print(tabulate.tabulate(content, headers, floatfmt=".3f"))
     
